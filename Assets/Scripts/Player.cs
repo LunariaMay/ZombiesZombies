@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 
 {
+
     // Declares call to bullet prefab
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
@@ -12,7 +13,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Sets player control/speed
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     private float horizontalSpeed = 2;
     private float horizontalInput;
     private float forwardInput;
+
 
     // Update is called once per frame
     void Update()
@@ -34,7 +36,18 @@ public class Player : MonoBehaviour
         // Spawns bullet on click
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletPrefab.transform.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
+        }
+
+    }
+
+    // Destroys player upon collision with a zombie
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Zombie"))
+        {
+            Destroy(gameObject);
         }
     }
+
 }

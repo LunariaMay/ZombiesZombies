@@ -15,4 +15,18 @@ public class DestroyBullet : MonoBehaviour
     {
         
     }
+
+    // Destroys bullet AND zombie if they collide with each other, OR destroys just the bullet if it collides with anything else
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Zombie"))
+        {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }

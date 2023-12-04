@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+    // Directional and movement declarations
     [SerializeField] float moveSpeed = 2f;
     Rigidbody2D rb;
     Transform target;
