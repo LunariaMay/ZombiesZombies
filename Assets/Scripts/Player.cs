@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     // Declares call to bullet prefab
     public GameObject bulletPrefab;
+    public Transform bulletSpawnPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
         // Spawns bullet on click
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Instantiate(bulletPrefab, transform.position, bulletPrefab.transform.rotation);
+            Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletPrefab.transform.rotation);
         }
     }
 }
