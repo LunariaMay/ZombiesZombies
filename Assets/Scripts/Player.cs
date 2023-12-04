@@ -5,6 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 
 {
+    // Declares call to bullet prefab
+    public GameObject bulletPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +29,11 @@ public class Player : MonoBehaviour
         // Moves player
         transform.Translate(Vector3.up * Time.deltaTime * speed * forwardInput);
         transform.Translate(Vector3.right * Time.deltaTime * horizontalSpeed * horizontalInput);
+
+        // Spawns bullet on click
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Instantiate(bulletPrefab, transform.position, bulletPrefab.transform.rotation);
+        }
     }
 }
