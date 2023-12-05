@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class Zombie : MonoBehaviour
 {
+    // Declares call to Game Manager
+    private GameManager gameManager;
+
+    // Declares points as an integer
+    public int pointValue;
+
     // Directional and movement declarations
     [SerializeField] float moveSpeed = 2f;
     Rigidbody2D rb;
     Transform target;
     Vector2 moveDirection;
+
+    // Declares variable for particle system
+    public ParticleSystem explosionParticle;
 
     private void Awake()
     {
@@ -18,7 +27,11 @@ public class Zombie : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameObject.Find("Player").transform; 
+        // Searches for the player so it can move toward it
+        target = GameObject.Find("Player").transform;
+
+        // Calls GameManager as a component
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>(); 
     }
 
     // Update is called once per frame
@@ -41,4 +54,24 @@ public class Zombie : MonoBehaviour
         }
     }
 
+    // Destroys bullet AND zombie if they collide with each other, OR destroys just the bullet if it collides with anything else
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+            if (!gameObject.CompareTag("Player")) // Remove if it doesnt work
+            {
+                gameManager.GameOver(); // Remove if it doesnt work
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Bullet")) 
+        {
+            gameManager.UpdateScore(pointValue); 
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+        }
+    }
 }
