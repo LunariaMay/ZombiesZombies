@@ -8,7 +8,7 @@ public class DestroyBullet : MonoBehaviour
     void Start()
     {
         // Destroys bullet after a few moments
-        Destroy(this.gameObject, 0.4f);
+        Destroy(this.gameObject, 0.3f);
     }
 
     // Update is called once per frame
