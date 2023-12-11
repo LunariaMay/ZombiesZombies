@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreUI;
     public TextMeshProUGUI gameOverUI;
     public Button restartButton;
+    public Button menuButton;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     {
         gameOverUI.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
+        menuButton.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -43,5 +45,10 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+    }
+
+    public void MainMenuButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

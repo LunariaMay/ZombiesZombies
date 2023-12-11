@@ -44,6 +44,11 @@ public class Zombie : MonoBehaviour
             rb.rotation = angle;
             moveDirection = direction;
         }
+        else // Remove if it doesnt work
+        {
+            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
+        }
     }
 
     private void FixedUpdate()
