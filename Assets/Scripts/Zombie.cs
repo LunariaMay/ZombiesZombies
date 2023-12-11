@@ -60,18 +60,20 @@ public class Zombie : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            if (!gameObject.CompareTag("Player")) // Remove if it doesnt work
+            Destroy(transform.parent.gameObject);
+            if (!gameObject.CompareTag("Player")) 
             {
-                gameManager.GameOver(); // Remove if it doesnt work
+                gameManager.GameOver(); 
             }
         }
 
         if (collision.gameObject.CompareTag("Bullet")) 
         {
             gameManager.UpdateScore(pointValue); 
-            Destroy(gameObject);
-            Destroy(collision.gameObject);
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
+
     }
 }

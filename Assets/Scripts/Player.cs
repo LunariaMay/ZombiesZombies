@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Zombie"))
         {
             Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 

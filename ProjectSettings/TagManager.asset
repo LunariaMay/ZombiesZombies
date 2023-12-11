@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Zombie
   - Bullet
+  - Parent
   layers:
   - Default
   - TransparentFX

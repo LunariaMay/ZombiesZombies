@@ -8,9 +8,9 @@ public class SpawnManager : MonoBehaviour
 
     // Random spawn times and specified spawn times
     private float spawnRangeX = 7;
-    private float spawnRangeY = 3f;
+    private float spawnRangeY = 2.8f;
     private float startDelay = 2;
-    private float spawnInterval = 3f;
+    private float spawnInterval = 1f;
 
 
     // Start is called before the first frame update
